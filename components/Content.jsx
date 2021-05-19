@@ -10,6 +10,7 @@ function Content() {
   const [page, setPage] = useState(1);
 
   const getData = (page) => {
+    console.log("vao day")
     getListImage(page).then((res) => {
       console.log("res", res.data);
       console.log("page", page);
@@ -47,12 +48,13 @@ function Content() {
         {listImg &&
           listImg.map((items) => {
             return (
-              <Row justify="center">
-                <Card
+              <Row justify="center"
                   key={items.id}
+              >
+                <Card
                   title="Image"
                   hoverable
-                  style={{ width: 500, height: "auto", marginBottom: "50px" }}
+                  style={{ width: 614, height: "auto", marginBottom: "50px" }}
                   cover={<Image alt="example" src={items.download_url} />}
                 >
                   <Meta
