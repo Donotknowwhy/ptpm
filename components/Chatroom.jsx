@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+import { SendOutlined } from '@ant-design/icons';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
@@ -36,23 +37,22 @@ function Chatroom() {
     dummy.current.scrollIntoView({ behavior: 'smooth' });
   }
 
-  return (<>
+  return (
+  <div className="chatbox">
     <main>
-
       {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
 
       <span ref={dummy}></span>
-
     </main>
 
     <form onSubmit={sendMessage}>
 
-      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Nói điều gì đó ngọt ngào" />
+      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Nhắn tin..." />
 
-      <button type="submit" disabled={!formValue}>🕊️</button>
+      <button type="submit" disabled={!formValue}><SendOutlined /></button>
 
     </form>
-  </>)
+  </div>)
 }
 
 

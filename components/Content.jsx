@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Image, Row, Col, Avatar, Skeleton } from "antd";
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { getListImage } from "./../api/image";
 import Chatroom from "./Chatroom";
 import styles from "./Content.module.scss";
@@ -76,7 +77,7 @@ function Content() {
           </Col>
           <Col>
             <div className="App">
-              <header>Trash talk 💬</header>
+              <header><span>Trash talk  💬</span> <ExclamationCircleOutlined style={{fontSize:"20px", marginRight: "4px", cursor: "pointer"}}/></header>
               <section>
                 <Chatroom />
               </section>
@@ -85,7 +86,7 @@ function Content() {
         </Row>
       </div>
       {isFetching || (
-        <Row justify="center">
+        <Row>
           <Card style={{ width: 614, height: "auto", marginBottom: "50px" }}>
             <Skeleton active />
           </Card>
