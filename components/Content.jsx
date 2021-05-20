@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, Image, Row, Col, Avatar, Skeleton } from "antd";
 import { getListImage } from "./../api/image";
-
+import Chatroom from "./Chatroom";
+import styles from "./Content.module.scss";
 const { Meta } = Card;
 
 function Content() {
@@ -10,7 +11,7 @@ function Content() {
   const [page, setPage] = useState(1);
 
   const getData = (page) => {
-    console.log("vao day")
+    console.log("vao day");
     getListImage(page).then((res) => {
       console.log("res", res.data);
       console.log("page", page);
@@ -45,29 +46,43 @@ function Content() {
   return (
     <div>
       <div style={{ "margin-top": "100px" }}>
-        {listImg &&
-          listImg.map((items) => {
-            return (
-              <Row justify="center"
-                  key={items.id}
-              >
-                <Card
-                  title="Image"
-                  hoverable
-                  style={{ width: 614, height: "auto", marginBottom: "50px" }}
-                  cover={<Image alt="example" src={items.download_url} />}
-                >
-                  <Meta
-                    avatar={
-                      <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                    }
-                    title={items.author}
-                    description="www.instagram.com"
-                  />
-                </Card>
-              </Row>
-            );
-          })}
+        <Row justify="center">
+          <Col>
+            {listImg &&
+              listImg.map((items) => {
+                return (
+                  <Row justify="center" key={items.id}>
+                    <Card
+                      title="Image"
+                      hoverable
+                      style={{
+                        width: 614,
+                        height: "auto",
+                        marginBottom: "50px",
+                      }}
+                      cover={<Image alt="example" src={items.download_url} />}
+                    >
+                      <Meta
+                        avatar={
+                          <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                        }
+                        title={items.author}
+                        description="www.instagram.com"
+                      />
+                    </Card>
+                  </Row>
+                );
+              })}
+          </Col>
+          <Col>
+            <div className="App">
+              <header>Trash talk 💬</header>
+              <section>
+                <Chatroom />
+              </section>
+            </div>
+          </Col>
+        </Row>
       </div>
       {isFetching || (
         <Row justify="center">

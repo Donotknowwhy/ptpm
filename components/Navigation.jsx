@@ -14,8 +14,12 @@ import { HeartOutlined, HomeOutlined ,SendOutlined
 const { SubMenu } = Menu;
 const { Text, Link } = Typography;
 
+
 export default function Navigation() {
-  const { logout } = useUser();
+  const { logout, user } = useUser();
+  
+
+
   const content = (
     <Menu>
       <Menu.Item key="0">
@@ -57,7 +61,7 @@ export default function Navigation() {
           <div className={styles.controlItem}>
             <Popover content={content} trigger="click">
               <img className={styles.userAvt}
-                src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"/>
+                src={user ? user.photoURL : ''}/>
             </Popover>
           </div>
         </div>

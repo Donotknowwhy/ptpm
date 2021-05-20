@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/storage';
+import 'firebase/firestore';
 const config = {
   apiKey: 'AIzaSyDtlyqZ9uh8wGKBRp138GtpSakjaes213Y',
   authDomain: 'testing-project-291f4.firebaseapp.com',
@@ -14,6 +15,9 @@ const initFirebase = () => {
     firebase.initializeApp(config);
   }
 };
+
+
+// const firestore = firebase.firestore()
 const signIn = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 const signUp = (email, password) =>
