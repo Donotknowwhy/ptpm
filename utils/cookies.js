@@ -12,7 +12,7 @@ export const setAccessToken = (user) => {
   cookies.set('accessToken', user.accessToken, {
     // firebase id tokens expire in one hour
     // set cookie expiry to match
-    expires: 1 / 24,
+    expires: 30,
   });
 };
 
@@ -30,7 +30,7 @@ export const setRefreshToken = (user) => {
   cookies.set('refreshToken', user.refreshToken, {
     // firebase refresh tokens expire in one day
     // set cookie expiry to match
-    expires: 24,
+    expires: 30,
   });
 };
 

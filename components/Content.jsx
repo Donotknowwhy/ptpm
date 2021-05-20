@@ -71,7 +71,7 @@ function Content() {
       </div>
       {isFetching || (
         <Row justify="center">
-          <Card style={{ width: 500, height: "auto", marginBottom: "50px" }}>
+          <Card style={{ width: 614, height: "auto", marginBottom: "50px" }}>
             <Skeleton active />
           </Card>
         </Row>
