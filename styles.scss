@@ -37,15 +37,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-//   min-height: 70vh;
+  min-height: 70vh;
   background-color: rgb(40, 37, 53);
 }
 
 main {
   padding: 10px;
-//   height: 50vh;
-//   margin: 10vh 0 10vh;
-// margin-bottom: 0;
+  height: 40vh;
+  margin: 10vh 0 10vh;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
