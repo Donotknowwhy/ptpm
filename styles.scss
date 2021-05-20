@@ -129,12 +129,12 @@ p {
   border-radius: 25px;
   position: relative;
   color: #fff;
-  text-align: center;
+  text-align: start;
 }
 
 .message {
   display: flex;
-  align-items: center;
+  // align-items: center;
 }
 
 .sent {
