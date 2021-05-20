@@ -58,8 +58,8 @@ function Chatroom() {
 
 function ChatMessage(props) {
     const { text, uid, photoURL } = props.message;
-  
-    const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+
+    const messageClass = auth.currentUser ? uid === auth.currentUser.uid ? 'sent' : 'received' : '' ;
   
     return (<>
       <div className={`message ${messageClass}`}>

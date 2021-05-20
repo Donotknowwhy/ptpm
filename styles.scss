@@ -113,14 +113,6 @@
 }
 
 
-
-
-// ul,
-// li {
-//   text-align: left;
-//   list-style: none;
-// }
-
 p {
   max-width: 500px;
   margin-bottom: 12px;
@@ -156,4 +148,11 @@ p {
   height:32px;
   border-radius: 50%;
   margin: 2px 5px;
+}
+
+
+@media only screen and (max-width: 992px) {
+  .App{
+    display: none;
+  }
 }
