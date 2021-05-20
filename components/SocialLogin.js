@@ -40,7 +40,7 @@ const SocialLogin = () => {
   }, []);
 
   return (
-    <div>
+    <div style = {{marginBottom: "60px"}}>
       {renderAuth ? (
         <StyledFirebaseAuth
           uiConfig={firebaseAuthConfig}

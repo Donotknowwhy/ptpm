@@ -21,7 +21,7 @@ export default function Navigation() {
 
 
   const content = (
-    <Menu>
+    <Menu className={styles.userMenu}>
       <Menu.Item key="0">
         <a href="/"><UserOutlined /> Trang cá nhân</a>
       </Menu.Item>
@@ -51,7 +51,7 @@ export default function Navigation() {
           <div className={styles.controlItem}>
             <HomeOutlined className={styles.icon} />
           </div>
-          <div className={styles.controlItem} style={{position: 'relative'}}>
+          <div className={styles.controlItem}>
             <SendOutlined className={styles.icon}/> 
             <span className={styles.countMessage}>2</span>
           </div>
