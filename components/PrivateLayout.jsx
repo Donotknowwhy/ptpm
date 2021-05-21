@@ -1,12 +1,10 @@
+import { Layout } from "antd";
 import React from "react";
-import { Layout, Menu, Breadcrumb, Row, Col, Popover, Button } from "antd";
-import styles from "./index.module.scss";
 import Navigation from "./Navigation";
-import Content from "./Content";
 
 const { Header, Footer } = Layout;
 
-function index(props) {
+function PrivateLayout(props) {
   return (
     <div>
       <Layout>
@@ -14,11 +12,11 @@ function index(props) {
           <Navigation />
         </Header>
         <Layout>
-          <Content />
+          {props.children}
         </Layout>
       </Layout>
     </div>
   );
 }
 
-export default index;
+export default PrivateLayout;

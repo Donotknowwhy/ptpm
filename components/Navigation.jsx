@@ -23,7 +23,7 @@ export default function Navigation() {
   const content = (
     <Menu className={styles.userMenu}>
       <Menu.Item key="0">
-        <a href="/"><UserOutlined /> Trang cá nhân</a>
+        <a href="/profile"><UserOutlined /> Trang cá nhân</a>
       </Menu.Item>
       <Menu.Item key="0">
         <a href="/"><BookOutlined /> Đã lưu</a>
@@ -39,9 +39,8 @@ export default function Navigation() {
 
   return (
     <div className={styles.nav}>
-      
         <div>
-          <Link href="/" target="_blank" className={styles.textLogo}>
+          <Link href="/" className={styles.textLogo}>
           Í_𝓷𝓽𝓪𝓰𝓻𝓪𝓶
           </Link>
         </div>

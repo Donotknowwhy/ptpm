@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useRouter } from 'next/router';
-import Main from "../components";
 import { Typography } from "antd";
 import { getAccessToken } from './../utils/cookies';
+import PrivateLayout from './../components/PrivateLayout';
+import Content from './../components/Content';
 
 const { Title } = Typography;
 
@@ -17,7 +18,9 @@ export default function Home() {
 
   return (
     <div>
-      <Main />
+      <PrivateLayout>
+        <Content />
+      </PrivateLayout>
     </div>
   );
 }

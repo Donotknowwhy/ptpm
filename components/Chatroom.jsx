@@ -1,25 +1,24 @@
-import React,{useState, useEffect, useRef} from 'react'
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+import React, { useState, useEffect, useRef } from "react";
+import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/auth";
 
-import { SendOutlined } from '@ant-design/icons';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { SendOutlined } from "@ant-design/icons";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 function Chatroom() {
-    const [user] = useAuthState(auth);
-    const dummy = useRef();
-  const messagesRef = firestore.collection('test');
-  const query = messagesRef.orderBy('createdAt');
+  const [user] = useAuthState(auth);
+  const dummy = useRef();
+  const messagesRef = firestore.collection("test");
+  const query = messagesRef.orderBy("createdAt");
 
-  const [messages] = useCollectionData(query, { idField: 'id' });
+  const [messages] = useCollectionData(query, { idField: "id" });
 
-  const [formValue, setFormValue] = useState('');
-
+  const [formValue, setFormValue] = useState("");
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -30,43 +29,60 @@ function Chatroom() {
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
-      photoURL
-    })
+      photoURL,
+    });
 
-    setFormValue('');
-    dummy.current.scrollIntoView({ behavior: 'smooth' });
-  }
+    setFormValue("");
+    dummy.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-  <div className="chatbox">
-    <main>
-      {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+    <div className="chatbox">
+      <main>
+        {messages &&
+          messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
 
-      <span ref={dummy}></span>
-    </main>
+        <span ref={dummy}></span>
+      </main>
 
-    <form onSubmit={sendMessage}>
+      <form onSubmit={sendMessage}>
+        <input
+          value={formValue}
+          onChange={(e) => setFormValue(e.target.value)}
+          placeholder="Nhắn tin..."
+        />
 
-      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Nhắn tin..." />
-
-      <button type="submit" disabled={!formValue}><SendOutlined /></button>
-
-    </form>
-  </div>)
+        <button type="submit" disabled={!formValue}>
+          <SendOutlined />
+        </button>
+      </form>
+    </div>
+  );
 }
 
-
 function ChatMessage(props) {
-    const { text, uid, photoURL } = props.message;
+  const { text, uid, photoURL, createdAt } = props.message;
 
-    const messageClass = auth.currentUser ? uid === auth.currentUser.uid ? 'sent' : 'received' : '' ;
-  
-    return (<>
+  const messageClass = auth.currentUser
+    ? uid === auth.currentUser.uid
+      ? "sent"
+      : "received"
+    : "";
+
+  return (
+    <>
       <div className={`message ${messageClass}`}>
-        <img className="imgchat" src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+        <img
+          className="imgchat"
+          src={
+            photoURL || "https://api.adorable.io/avatars/23/abott@adorable.png"
+          }
+        />
+
         <p>{text}</p>
       </div>
-    </>)
-  }
+    </>
+  );
+}
 
-export default Chatroom
+export default Chatroom;
