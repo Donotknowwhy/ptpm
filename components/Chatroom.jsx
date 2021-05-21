@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { formatRelative } from 'date-fns';
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
@@ -9,6 +10,17 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
+const formatDate = date => {
+  let formattedDate = '';
+  if (date) {
+    // Convert the date in words relative to the current date
+    formattedDate = formatRelative(date, new Date());
+    // Uppercase the first letter
+    formattedDate =
+      formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+  }
+  return formattedDate;
+};
 
 function Chatroom() {
   const [user] = useAuthState(auth);
@@ -23,13 +35,14 @@ function Chatroom() {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    const { uid, photoURL } = auth.currentUser;
+    const { uid, photoURL, displayName } = auth.currentUser;
 
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
       photoURL,
+      displayName
     });
 
     setFormValue("");
@@ -61,13 +74,18 @@ function Chatroom() {
 }
 
 function ChatMessage(props) {
-  const { text, uid, photoURL, createdAt } = props.message;
+  const { text, uid, photoURL, createdAt, displayName } = props.message;
+
+  useEffect(() => {
+    console.log("aa "+firebase.firestore.FieldValue.serverTimestamp())
+  },[])
 
   const messageClass = auth.currentUser
     ? uid === auth.currentUser.uid
       ? "sent"
       : "received"
     : "";
+
 
   return (
     <>
@@ -78,7 +96,14 @@ function ChatMessage(props) {
             photoURL || "https://api.adorable.io/avatars/23/abott@adorable.png"
           }
         />
-
+        {createdAt?.seconds ? (
+            <span className="createdAt">
+              {formatDate(new Date(createdAt.seconds * 1000))}
+            </span>
+          ) : null}
+          {displayName ? (
+            <span className="name">{displayName}</span>
+          ) : null}
         <p>{text}</p>
       </div>
     </>
