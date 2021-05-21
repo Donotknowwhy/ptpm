@@ -48,11 +48,11 @@ function Content() {
     <div>
       <div style={{ "margin-top": "100px" }}>
         <Row justify="center">
-          <Col>
+          <Col  lg={16} xl={10} xxl={11}>
             {listImg &&
               listImg.map((items) => {
                 return (
-                  <Row justify="center" key={items.id}>
+                    <Row justify="end">
                     <Card
                       title="Image"
                       hoverable
@@ -71,11 +71,11 @@ function Content() {
                         description="www.instagram.com"
                       />
                     </Card>
-                  </Row>
+                    </Row>
                 );
               })}
           </Col>
-          <Col>
+          <Col  lg={5} xl={6} xxl={6}>
             <div className="App">
               <header><span>Trash talk  💬</span> <ExclamationCircleOutlined style={{fontSize:"20px", marginRight: "4px", cursor: "pointer"}}/></header>
               <section>
