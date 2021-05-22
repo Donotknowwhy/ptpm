@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Image, Row, Col, Avatar, Skeleton } from "antd";
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { ExclamationCircleOutlined, UserOutlined } from '@ant-design/icons';
 import { getListImage } from "./../api/image";
 import Chatroom from "./Chatroom";
 import styles from "./Content.module.scss";
@@ -12,12 +12,11 @@ function Content() {
   const [page, setPage] = useState(1);
 
   const getData = (page) => {
-    console.log("vao day");
     getListImage(page).then((res) => {
-      console.log("res", res.data);
-      console.log("page", page);
+      console.log(res.data.data);
+      console.log(res.data.data.photos);
       setIsFetching(false);
-      setListImg([...listImg, ...res.data]);
+      setListImg([...listImg, ...res.data.data.photos]);
     });
   };
 
@@ -54,21 +53,21 @@ function Content() {
                 return (
                     <Row justify="end">
                     <Card
-                      title="Image"
+                      title={"#"+items.id}
                       hoverable
                       style={{
                         width: 614,
                         height: "auto",
                         marginBottom: "50px",
                       }}
-                      cover={<Image alt="example" src={items.download_url} />}
+                      cover={<Image alt="example" src={items.src.original} />}
                     >
                       <Meta
                         avatar={
-                          <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                          <Avatar icon={<UserOutlined />} />
                         }
-                        title={items.author}
-                        description="www.instagram.com"
+                        title={items.photographer}
+                        description={items.photographer_url}
                       />
                     </Card>
                     </Row>
@@ -86,7 +85,7 @@ function Content() {
         </Row>
       </div>
       {isFetching || (
-        <Row>
+        <Row justify="center">
           <Card style={{ width: 614, height: "auto", marginBottom: "50px" }}>
             <Skeleton active />
           </Card>
