@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PrivateLayout from "../../components/PrivateLayout";
 import styles from "./index.module.scss";
 import { useUser } from "../../utils/use-user";
-import { storage, user } from "../../api/firebase-client"
+import { storage, user } from "../../api/firebase-client";
+import { v4 as uuidv4 } from "uuid";
 
 import { Upload, message, Button, Row, Avatar, Modal } from "antd";
 
@@ -13,19 +14,20 @@ import {
   BookOutlined,
   SolutionOutlined,
 } from "@ant-design/icons";
+import { getSignedURL, putImage } from "../../api/image";
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 }
 
 const openNotification = () => {
   notification.open({
-    message: 'Tải ảnh lên thành công',
+    message: "Tải ảnh lên thành công",
   });
 };
 
@@ -54,54 +56,12 @@ function profile() {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const [previewVisible, setPreviewVisible] = useState(false);
-  const [previewImage, setPreviewImage] = useState('https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png');
-  const [previewTitle, setPreviewTitle] = useState('[previewTitle');
-  const [image, setImage] = useState('');
-  const [lengthArr, setLengthArr] = useState('');
-  const [imageAsUrl, setImageAsUrl] = useState({imgUrl: ''});
-  const [avtUrl, setAvtUrl] = useState('')
+  const [previewImage, setPreviewImage] = useState(
+    "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+  );
+  const [previewTitle, setPreviewTitle] = useState("[previewTitle");
 
-  const [fileList, setFileList] = useState([
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-2',
-      name: 'image.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-3',
-      name: 'image.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-4',
-      name: 'image.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-xxx',
-      percent: 50,
-      name: 'image.png',
-      status: 'uploading',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-5',
-      name: 'image.png',
-      status: 'error',
-    },
-  ])
-
-
-
+  const [fileList, setFileList] = useState([]);
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -109,17 +69,19 @@ function profile() {
     }
     setPreviewImage(file.url || file.preview);
     setPreviewVisible(true);
-    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+    setPreviewTitle(
+      file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
+    );
   };
 
   const handleCancelPreview = () => {
     setPreviewVisible(false);
   };
 
-  const handleChange = ({fileList}) => {
+  const handleChange = ({ fileList = [] }) => {
+    console.log(fileList);
     setFileList(fileList);
   };
-
 
   const uploadButton = (
     <div>
@@ -134,7 +96,17 @@ function profile() {
 
   const handleOk = () => {
     setIsModalVisible(false);
-
+    fileList.map((items) => {
+      const name =
+        uuidv4(items.name.split(".")[0]) + "." + items.name.split(".")[1];
+      console.log(name);
+      getSignedURL(name)
+        .then((res) => {
+          console.log(res.data.data);
+          putImage(res.data.data, items.originFileObj);
+        })
+        .catch((error) => console.log("error"));
+    });
   };
 
   const handleCancel = () => {
@@ -183,14 +155,12 @@ function profile() {
                         <Upload
                           fileList={fileList}
                           listType="picture-card"
-                          // onPreview={handlePreview}
+                          onPreview={handlePreview}
                           onChange={handleChange}
                         >
-                          {fileList.length >= 8 ? null : uploadButton}
-              
+                          {fileList.length >= 5 ? null : uploadButton}
                         </Upload>
                       </Row>
-
 
                       <Modal
                         visible={previewVisible}
