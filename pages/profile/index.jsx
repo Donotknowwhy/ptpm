@@ -4,8 +4,9 @@ import styles from "./index.module.scss";
 import { useUser } from "../../utils/use-user";
 
 import { Upload, message, Button, Row, Avatar } from 'antd';
-
 import { UploadOutlined ,SettingOutlined ,InsertRowAboveOutlined ,BookOutlined,SolutionOutlined} from '@ant-design/icons';
+
+import CardImage from "../CardImage/index";
 
 
 function profile() {
@@ -30,7 +31,7 @@ function profile() {
     return (
         <div>
             <PrivateLayout>
-                <Row justify = "center">
+                <Row justify = "center" style = {{height:"100vh", backgroundColor:"#FFF"}}>
                 <div className={styles.profile}>
                    <div className={styles.profileContent}>
                         <Avatar size={150} src={user ? user.photoURL : ''} className={styles.imgUser}/>
@@ -59,9 +60,9 @@ function profile() {
                         </div>
                    </div>
                    <div className={styles.listImage}>
-
+                      <CardImage/>
                    </div>
-               </div>
+                </div>
                 </Row>
             </PrivateLayout>
         </div>
