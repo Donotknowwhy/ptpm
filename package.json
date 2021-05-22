@@ -12,6 +12,7 @@
     "@firebase/app": "^0.6.11",
     "@firebase/auth": "^0.14.9",
     "@firebase/firestore": "^2.3.0",
+    "@firebase/storage": "^0.5.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.11",

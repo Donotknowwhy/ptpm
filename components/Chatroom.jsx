@@ -4,12 +4,19 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 
+import {
+  Row, Col, Avatar, Dropdown, Space,
+  Typography, Card, Image, Menu, Modal, Button,
+} from 'antd';
 import { SendOutlined , SmileOutlined} from "@ant-design/icons";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
+
+
+const {Text} = Typography;
 const formatDate = date => {
   let formattedDate = '';
   if (date) {
@@ -99,11 +106,11 @@ function ChatMessage(props) {
         <div className = "linechat">
           <div className = "timechat">
             {displayName ? (
-                  <span className="namechat">{displayName}</span>
+                  <span className="namechat"><Text strong>{displayName}</Text></span>
                 ) : null}
             {createdAt?.seconds ? (
                 <span className="createdAt">
-                  {formatDate(new Date(createdAt.seconds * 1000))}
+                  <Text disabled>{formatDate(new Date(createdAt.seconds * 1000))}</Text>
                 </span>
               ) : null}
           </div>

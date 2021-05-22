@@ -3,11 +3,9 @@ import PrivateLayout from '../../components/PrivateLayout'
 import styles from "./index.module.scss";
 import { useUser } from "../../utils/use-user";
 
-import { Upload, message, Button, Row } from 'antd';
+import { Upload, message, Button, Row, Avatar } from 'antd';
 
 import { UploadOutlined ,SettingOutlined ,InsertRowAboveOutlined ,BookOutlined,SolutionOutlined} from '@ant-design/icons';
-
-
 
 
 function profile() {
@@ -35,11 +33,11 @@ function profile() {
                 <Row justify = "center">
                 <div className={styles.profile}>
                    <div className={styles.profileContent}>
-                        <img src={user ? user.photoURL : ''} alt="" className={styles.imgUser} />
+                        <Avatar size={150} src={user ? user.photoURL : ''} className={styles.imgUser}/>
                         <div className={styles.profileControl}>
                             <div style = {{display: "flex",height: "40px",alignItems:" center",marginTop: "16px"}}>
                                 <div className={styles.userName}>
-                                    <span>NamPhung</span>
+                                    <span>{user ? user.displayName : ''}</span>
                                 </div>
                                 <div className={styles.uploadImg}>
                                         <Upload {...props}>
