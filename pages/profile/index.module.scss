@@ -1,0 +1,58 @@
+.profile{
+    height:100vh;
+    width: 936px;
+    margin-top: 106px;
+}
+
+.profileContent{
+    display: flex;
+    padding-bottom: 42px;
+    border-bottom: 1px solid #ccc;
+
+    .imgUser{
+        height:160px;
+        border-radius:50%;
+        // border: 2px solid #ccc;
+        box-shadow: 1px 1px 2px #ccc;
+        margin-right: 100px;
+    }
+
+    .profileControl{
+        
+        .userName{
+            font-size: 28px;
+            line-height: 40px;
+            font-weight: 100;
+            margin-right: 26px;
+        }
+        .uploadImg{
+            padding-right: 16px;
+        }
+    }
+}
+
+.folow{
+    display: flex;
+
+    .folowItem{
+        font-size: 18px;
+        font-weight:100;
+        margin-right:32px;
+        color: #262626;
+        margin-bottom: 0;
+        padding:0;
+        margin-left:0;
+        margin-top: 32px;
+    }
+}
+
+.menuContol{
+    display: flex;
+    margin-top: 32px;
+    .menuItem{
+        color: #8e8e8e;
+        margin-right: 62px;
+        font-size:16px;
+        font-weight:300;
+    }
+}
