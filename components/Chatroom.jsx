@@ -4,7 +4,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 
-import { SendOutlined } from "@ant-design/icons";
+import { SendOutlined , SmileOutlined} from "@ant-design/icons";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
@@ -66,7 +66,7 @@ function Chatroom() {
         />
 
         <button type="submit" disabled={!formValue}>
-          <SendOutlined />
+          <SendOutlined/>
         </button>
       </form>
     </div>
@@ -96,15 +96,19 @@ function ChatMessage(props) {
             photoURL || "https://api.adorable.io/avatars/23/abott@adorable.png"
           }
         />
-        {createdAt?.seconds ? (
-            <span className="createdAt">
-              {formatDate(new Date(createdAt.seconds * 1000))}
-            </span>
-          ) : null}
-          {displayName ? (
-            <span className="name">{displayName}</span>
-          ) : null}
-        <p>{text}</p>
+        <div className = "linechat">
+          <div className = "timechat">
+            {displayName ? (
+                  <span className="namechat">{displayName}</span>
+                ) : null}
+            {createdAt?.seconds ? (
+                <span className="createdAt">
+                  {formatDate(new Date(createdAt.seconds * 1000))}
+                </span>
+              ) : null}
+          </div>
+             <p>{text}</p>
+        </div>
       </div>
     </>
   );
