@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 import { Card, Image, Row, Col, Avatar, Skeleton, Typography } from "antd";
+=======
+import { Card, Image, Row, Col, Avatar, Skeleton } from "antd";
+>>>>>>> refactor api
 import { ExclamationCircleOutlined, UserOutlined } from '@ant-design/icons';
 import { getListImage } from "./../api/image";
 import Chatroom from "./Chatroom";
@@ -16,6 +20,10 @@ function Content() {
   const getData = (page) => {
     getListImage(page).then((res) => {
       console.log(res.data.data);
+<<<<<<< HEAD
+=======
+      console.log(res.data.data.photos);
+>>>>>>> refactor api
       setIsFetching(false);
       setListImg([...listImg, ...res.data.data.photos]);
     });
@@ -54,6 +62,7 @@ function Content() {
                 return (
                     <Row justify="end">
                     <Card
+                      title={"#"+items.id}
                       hoverable
                       style={{
                         width: 614,
@@ -64,10 +73,10 @@ function Content() {
                     >
                       <Meta
                         avatar={
-                          <Avatar size={40} src={items.avatar}  />
+                          <Avatar icon={<UserOutlined />} />
                         }
-                        title={<Link href={items.photographer_url} target="_blank">{items.photographer}</Link>}
-                        // description={<Text code>{'#'+items.id}</Text>}
+                        title={items.photographer}
+                        description={items.photographer_url}
                       />
                     </Card>
                     </Row>
