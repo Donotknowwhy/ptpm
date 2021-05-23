@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Card, Image, Row, Col, Avatar, Skeleton } from "antd";
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { Card, Image, Row, Col, Avatar, Skeleton, Typography } from "antd";
+import { ExclamationCircleOutlined, UserOutlined } from '@ant-design/icons';
 import { getListImage } from "./../api/image";
 import Chatroom from "./Chatroom";
 import styles from "./Content.module.scss";
 const { Meta } = Card;
 
+
+const { Text, Link } = Typography;
 function Content() {
   const [listImg, setListImg] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [page, setPage] = useState(1);
 
   const getData = (page) => {
-    console.log("vao day");
     getListImage(page).then((res) => {
-      console.log("res", res.data);
-      console.log("page", page);
+      console.log(res.data.data);
       setIsFetching(false);
-      setListImg([...listImg, ...res.data]);
+      setListImg([...listImg, ...res.data.data.photos]);
     });
   };
 
@@ -54,21 +54,20 @@ function Content() {
                 return (
                     <Row justify="end">
                     <Card
-                      title="Image"
                       hoverable
                       style={{
                         width: 614,
                         height: "auto",
                         marginBottom: "50px",
                       }}
-                      cover={<Image alt="example" src={items.download_url} />}
+                      cover={<Image alt="example" src={items.src.original} />}
                     >
                       <Meta
                         avatar={
-                          <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                          <Avatar size={40} src={items.avatar}  />
                         }
-                        title={items.author}
-                        description="www.instagram.com"
+                        title={<Link href={items.photographer_url} target="_blank">{items.photographer}</Link>}
+                        // description={<Text code>{'#'+items.id}</Text>}
                       />
                     </Card>
                     </Row>
@@ -86,7 +85,7 @@ function Content() {
         </Row>
       </div>
       {isFetching || (
-        <Row>
+        <Row justify="center">
           <Card style={{ width: 614, height: "auto", marginBottom: "50px" }}>
             <Skeleton active />
           </Card>

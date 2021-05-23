@@ -32,7 +32,7 @@ const formatDate = date => {
 function Chatroom() {
   const [user] = useAuthState(auth);
   const dummy = useRef();
-  const messagesRef = firestore.collection("test");
+  const messagesRef = firestore.collection("demo1");
   const query = messagesRef.orderBy("createdAt");
 
   const [messages] = useCollectionData(query, { idField: "id" });
