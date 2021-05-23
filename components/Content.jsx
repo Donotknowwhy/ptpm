@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Card, Image, Row, Col, Avatar, Skeleton, Typography } from "antd";
+import { Card, Image, Row, Col, Avatar, Skeleton, Typography, Tooltip } from "antd";
 
 import { ExclamationCircleOutlined, UserOutlined } from "@ant-design/icons";
 import { getListImage } from "./../api/image";
