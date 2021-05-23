@@ -173,7 +173,7 @@ function profile() {
   return (
     <div>
       <PrivateLayout>
-        <Row justify="center">
+        <Row justify="center" style = {{backgroundColor: '#fff'}}>
           <div className={styles.profile}>
             <div className={styles.profileContent}>
               <Avatar
@@ -262,17 +262,21 @@ function profile() {
               </div>
             </div>
             <div className={styles.listImage}>
-              <Row justify="center">
-                {image &&
-                  image.map((items) => {
+              <Row  gutter={[8, 8]}>
+                {image && image.map((items) => {
                     return (
-                      <Image
-                        width={614}
-                        src={items}
-                        style={{
-                        marginBottom: "50px",
-                      }}
-                      />
+                      
+                      <Col span={8} >
+                        <Image
+                            className = {styles.ImgItem}
+                            width={294}
+                            src={items}
+                            style={{
+                            marginBottom: "8px",
+                          }}
+                        />
+                      </Col>
+                     
                     );
                   })}
                 {isFetching == false && (
