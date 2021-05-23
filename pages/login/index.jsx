@@ -22,7 +22,7 @@ export default function PublicLayout() {
         <Row justify="center">
           <Card className={styles.card} hoverable>
           <Meta title=""  />
-            <h3 style={{textAlign: 'center'}}>Welcome to íntagarm</h3>
+            <h3 style={{textAlign: 'center'}}>Welcome to Í_𝓷𝓽𝓪𝓰𝓻𝓪𝓶</h3>
             <SocialLogin />
 
             <span>You don't have an account? <a>Register</a></span>

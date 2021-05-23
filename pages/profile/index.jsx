@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PrivateLayout from "../../components/PrivateLayout";
 import styles from "./index.module.scss";
-import { useUser } from "../../utils/use-user";
+import { getCurrentUser, useUser } from "../../utils/use-user";
 import { storage, user } from "../../api/firebase-client";
 import { v4 as uuidv4 } from "uuid";
 
@@ -15,6 +15,9 @@ import {
   Grid,
   Modal,
   notification,
+  Card,
+  Image,
+  Skeleton
 } from "antd";
 import {
   UploadOutlined,
@@ -23,10 +26,14 @@ import {
   BookOutlined,
   SolutionOutlined,
 } from "@ant-design/icons";
-import { getSignedURL, putImage } from "../../api/image";
+import {
+  getSignedURL,
+  putImage,
+  saveUser,
+  getImageByUser,
+} from "../../api/image";
 
-import CardImage from "../CardImage/index";
-
+const { Meta } = Card;
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -44,6 +51,29 @@ const successNotification = () => {
 
 function profile() {
   const { user } = useUser();
+
+  const [image, setImage] = useState();
+  const [isFetching, setIsFetching] = useState(false);
+
+  useEffect(() => {
+    getCurrentUser().then((values) => {
+      getImageByUser(values.uid).then((res) => {
+        console.log(values.uid);
+        console.log(res.data.data);
+        setImage(res.data.data.images);
+        setIsFetching(false);
+      });
+    });
+  }, []);
+
+  // useEffect(() =>{
+  //   getCurrentUser().then((values) => {
+  //     getImageByUser(values.uid).then((res) =>{
+  //       console.log(res.data.data.images)
+  //       setImage(res.data.data.images)
+  //     })
+  //   })
+  // },[image])
 
   const props = {
     name: "file",
@@ -107,22 +137,29 @@ function profile() {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    fileList.map((items) => {
-      const name =
-        uuidv4(items.name.split(".")[0]) + "." + items.name.split(".")[1];
-      console.log(name);
-      getSignedURL(name)
-        .then((res) => {
-          console.log(res.data.data);
-          putImage(res.data.data, items.originFileObj)
-            .then(() => {
-              successNotification();
-            })
-            .catch((error) => {
-              console.log("error: " + error);
-            });
-        })
-        .catch((error) => console.log("error: " + error));
+    getCurrentUser().then((values) => {
+      fileList.map((items) => {
+        const name =
+          uuidv4(items.name.split(".")[0]) + "." + items.name.split(".")[1];
+        console.log(name);
+        getSignedURL(name)
+          .then((res) => {
+            console.log(res.data.data);
+            putImage(res.data.data, items.originFileObj)
+              .then(() => {
+                successNotification();
+              })
+              .catch((error) => {
+                console.log("error: " + error);
+              });
+            saveUser(values.uid, name)
+              .then(() => console.log("save user success"))
+              .catch((error) => {
+                console.log("error: " + error);
+              });
+          })
+          .catch((error) => console.log("error: " + error));
+      });
     });
   };
 
@@ -221,7 +258,33 @@ function profile() {
               </div>
             </div>
             <div className={styles.listImage}>
-              <CardImage />
+              <Row justify="center">
+                {image &&
+                  image.reverse().map((items) => {
+                    return (
+                      <Image
+                        width={614}
+                        src={items}
+                        style={{
+                        marginBottom: "50px",
+                      }}
+                      />
+                    );
+                  })}
+                {isFetching || (
+                  <Row justify="center">
+                    <Card
+                      style={{
+                        width: 614,
+                        height: "auto",
+                        marginBottom: "50px",
+                      }}
+                    >
+                      <Skeleton active />
+                    </Card>
+                  </Row>
+                )}
+              </Row>
             </div>
           </div>
         </Row>
