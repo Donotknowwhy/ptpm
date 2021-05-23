@@ -83,9 +83,6 @@ function Chatroom() {
 function ChatMessage(props) {
   const { text, uid, photoURL, createdAt, displayName } = props.message;
 
-  useEffect(() => {
-    console.log("aa "+firebase.firestore.FieldValue.serverTimestamp())
-  },[])
 
   const messageClass = auth.currentUser
     ? uid === auth.currentUser.uid

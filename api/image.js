@@ -6,3 +6,13 @@ export function getListImage(params) {
   // return axios.get(`http://localhost:3005/v1/images?page=${params}`) 
   return axios.get(`http://soc.laptrinhwebthatzui.me:13000/v1/images?page=${params}`) 
 }
+
+export function getSignedURL(params) {
+  return axios.get(
+    `http://soc.laptrinhwebthatzui.me:13000/v1/images/gen-signed-url?key=${params}`
+  );
+}
+
+export function putImage(url, data) {
+  return axios.put(url, data);
+}
