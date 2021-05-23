@@ -171,21 +171,28 @@ function profile() {
   return (
     <div>
       <PrivateLayout>
-        <Row justify="center" style={{ backgroundColor: "#fff" }}>
-          <div className={styles.profile}>
+        <Row justify="center" style = {{backgroundColor: '#fff' , width: '100%'}}>
             <div className={styles.profileContent}>
-              <Avatar
-                size={150}
-                src={user ? user.photoURL : ""}
-                className={styles.imgUser}
-              />
+            <Row justify="center" style = {{backgroundColor: '#fff' , width: '100%'}}>
+              <Col xs = {24} sm = {24} md = {8}>
+                <div style = {{display: 'flex', justifyContent: 'center'}}>
+                    <Avatar
+                    size={150}
+                    src={user ? user.photoURL : ""}
+                    className={styles.imgUser}
+                  />
+                </div>
+              </Col>
+              <Col xs = {24} sm={24} md={16}>
               <div className={styles.profileControl}>
-                <div
+                <div 
+                  className={styles.profileControlUpload}
                   style={{
                     display: "flex",
                     height: "40px",
                     alignItems: " center",
                     marginTop: "16px",
+                    width: "100%"
                   }}
                 >
                   <div className={styles.userName}>
@@ -193,6 +200,7 @@ function profile() {
                   </div>
                   <div className={styles.uploadImg}>
                     <Button
+                    className = {styles.btnUpload}
                       icon={<UploadOutlined />}
                       style={{ width: "180px", borderRadius: "5px" }}
                       onClick={showModal}
@@ -216,7 +224,7 @@ function profile() {
                           {fileList.length >= 5 ? null : uploadButton}
                         </Upload>
                       </Row>
-
+ 
                       <Modal
                         visible={previewVisible}
                         title={previewTitle}
@@ -231,7 +239,7 @@ function profile() {
                       </Modal>
                     </Modal>
                   </div>
-                  <SettingOutlined style={{ fontSize: "24px" }} />
+                  <SettingOutlined style={{ fontSize: "24px" }} className = {styles.iconSeting} />
                 </div>
                 <div className={styles.folow}>
                   <p className={styles.folowItem}>13 bài viết</p>
@@ -258,22 +266,26 @@ function profile() {
                   </div>
                 </div>
               </div>
+              </Col>
+              </Row>
             </div>
+            
             <div className={styles.listImage}>
-              <Row gutter={[8, 8]}>
-                {image &&
-                  image.map((items) => {
+              <Row  gutter={[8, 8]} style = {{backgroundColor: '#fff' , width: '100%'}}>
+                {image && image.map((items) => {
                     return (
-                      <Col span={8}>
-                        <Image
-                          className={styles.ImgItem}
-                          width={294}
-                          src={items}
-                          style={{
-                            marginBottom: "8px",
-                          }}
-                        />
+                      
+                      <Col span={8} xs = {24} sm = {12} lg={8} md={8} className={styles.colImage}>
+                        <div className={styles.boxImg}>
+                          <Image
+                              className = {styles.ImgItem}
+                              width={294}
+                              src={items}
+                              style={{display:"flex", justifyContent: "center"}}
+                          />
+                        </div>
                       </Col>
+                     
                     );
                   })}
                 {isFetching == false && (
@@ -291,7 +303,6 @@ function profile() {
                 )}
               </Row>
             </div>
-          </div>
         </Row>
       </PrivateLayout>
     </div>
