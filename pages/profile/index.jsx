@@ -54,26 +54,27 @@ function profile() {
 
   const [image, setImage] = useState();
   const [isFetching, setIsFetching] = useState(false);
+  const [change, setChange] = useState('')
 
   useEffect(() => {
     getCurrentUser().then((values) => {
       getImageByUser(values.uid).then((res) => {
         console.log(values.uid);
-        console.log(res.data.data);
+        console.log(res.data.data.images);
         setImage(res.data.data.images);
-        setIsFetching(false);
+        setIsFetching(true);
       });
     });
   }, []);
 
-  // useEffect(() =>{
-  //   getCurrentUser().then((values) => {
-  //     getImageByUser(values.uid).then((res) =>{
-  //       console.log(res.data.data.images)
-  //       setImage(res.data.data.images)
-  //     })
-  //   })
-  // },[image])
+  useEffect(() =>{
+    getCurrentUser().then((values) => {
+      getImageByUser(values.uid).then((res) =>{
+        console.log(res.data.data.images)
+        setImage(res.data.data.images.reverse())
+      })
+    })
+  },[change])
 
   const props = {
     name: "file",
@@ -103,6 +104,8 @@ function profile() {
   const [previewTitle, setPreviewTitle] = useState("[previewTitle");
 
   const [fileList, setFileList] = useState([]);
+
+ 
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -148,6 +151,7 @@ function profile() {
             putImage(res.data.data, items.originFileObj)
               .then(() => {
                 successNotification();
+                setChange(res.data.data)
               })
               .catch((error) => {
                 console.log("error: " + error);
@@ -260,7 +264,7 @@ function profile() {
             <div className={styles.listImage}>
               <Row justify="center">
                 {image &&
-                  image.reverse().map((items) => {
+                  image.map((items) => {
                     return (
                       <Image
                         width={614}
@@ -271,7 +275,7 @@ function profile() {
                       />
                     );
                   })}
-                {isFetching || (
+                {isFetching == false && (
                   <Row justify="center">
                     <Card
                       style={{

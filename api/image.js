@@ -26,5 +26,7 @@ export function saveUser(uid, params) {
 }
 
 export function getImageByUser(uid) {
-  return axios.get(`http://soc.laptrinhwebthatzui.me:13000/v1/users/${uid}`);
+  // return axios.get(`http://soc.laptrinhwebthatzui.me:13000/v1/users/${uid}`);
+  return axios.get(`http://localhost:3005/v1/users/${uid}`);
+
 }
