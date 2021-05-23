@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-import { Card, Image, Row, Col, Avatar, Skeleton, Typography, Tooltip } from "antd";
+import {
+  Card,
+  Image,
+  Row,
+  Col,
+  Avatar,
+  Skeleton,
+  Typography,
+  Tooltip,
+} from "antd";
 
 import { ExclamationCircleOutlined, UserOutlined } from "@ant-design/icons";
 import { getListImage } from "./../api/image";
@@ -49,11 +58,11 @@ function Content() {
     <div>
       <div style={{ "margin-top": "100px" }}>
         <Row justify="center">
-          <Col lg={11} xl={11} xxl={12}>
-            {listImg &&
-              listImg.map((items) => {
-                return (
-                  <Row justify="end">
+          <Col xs={24} sm={23} md={16} lg={11} xl={13} xxl={13} style={{"margin-right":"16px", "margin-left":"16px"}}>
+            <Row justify="end">
+              {listImg &&
+                listImg.map((items) => {
+                  return (
                     <Card
                       hoverable
                       style={{
@@ -73,11 +82,18 @@ function Content() {
                         // description={<Text code>{'#'+items.id}</Text>}
                       />
                     </Card>
-                  </Row>
-                );
-              })}
+                  );
+                })}
+              {isFetching || (
+                <Card
+                  style={{ width: 614, height: "auto", marginBottom: "50px" }}
+                >
+                  <Skeleton active />
+                </Card>
+              )}{" "}
+            </Row>
           </Col>
-          <Col lg={8} xl={8} xxl={12}>
+          <Col md={24} lg={8} xl={8} xxl={10}>
             <div className="App">
               <header>
                 <span>Trash talk 💬</span>{" "}
@@ -96,13 +112,6 @@ function Content() {
           </Col>
         </Row>
       </div>
-      {isFetching || (
-        <Row justify="center">
-          <Card style={{ width: 614, height: "auto", marginBottom: "50px" }}>
-            <Skeleton active />
-          </Card>
-        </Row>
-      )}
     </div>
   );
 }

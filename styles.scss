@@ -12,11 +12,10 @@
 
 .App {
   text-align: center;
-  max-width: 430px;
+  width: 375px;
   border: 1px solid #ccc;
   background-color: #fff;
   border-radius: 5px;
-  margin-left: 16px;
   position: fixed;
 
   header {
@@ -167,7 +166,7 @@ p {
   margin-bottom: 6px;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
   .App {
     display: none;
   }
