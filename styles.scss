@@ -25,7 +25,7 @@
     min-height: 50px;
     color: #000;
     font-weight: 500;
-    font-size:18px;
+    font-size: 18px;
     border-bottom: 1px solid #ccc;
     width: 100%;
     top: 30;
@@ -43,10 +43,9 @@
     justify-content: center;
     height: 100%;
   }
-  
 }
 
-.chatbox{
+.chatbox {
   main {
     height: 60vh;
     margin-left: 6px;
@@ -54,20 +53,19 @@
     display: flex;
     flex-direction: column;
   }
-  
+
   main::-webkit-scrollbar {
     width: 0.25rem;
   }
-  
+
   main::-webkit-scrollbar-track {
     background: #fff;
   }
-  
+
   main::-webkit-scrollbar-thumb {
     background: #d1d1e0;
-
   }
-  
+
   form {
     height: 60px;
     bottom: 0;
@@ -78,16 +76,15 @@
     align-items: center;
     font-size: 1.5rem;
 
-    
     input {
       border: 1px solid #ccc !important;
-      border-radius:20px;
+      border-radius: 20px;
       width: 100%;
       font-size: 14px !important;
       background-color: #fff;
       outline: none;
       border: none;
-      padding:10px;
+      padding: 10px;
       margin: 12px 0;
       margin-left: 16px;
     }
@@ -107,11 +104,8 @@
       opacity: 0.5;
       cursor: not-allowed;
     }
-    
   }
-  
 }
-
 
 p {
   max-width: 328px;
@@ -148,43 +142,57 @@ p {
 }
 
 .imgchat {
-  width:32px;
-  height:32px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   margin: 2px 5px;
 }
 
-.createdAt{
-  font-size:12px !important;
+.createdAt {
+  font-size: 12px !important;
   // text-align:start;
 }
 
-.namechat{
-  font-size:12px !important;
-  margin:0 4px;
+.namechat {
+  font-size: 12px !important;
+  margin: 0 4px;
 }
 
-.linechat{
+.linechat {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
 }
 
-.timechat{
+.timechat {
   margin-bottom: 6px;
 }
 
 @media only screen and (max-width: 992px) {
-  .App{
+  .App {
     display: none;
   }
 }
 
-.ant-card-head-title{
-  background: hsla(0,0%,58.8%,.1) !important;
-    border: 1px solid hsla(0,0%,39.2%,.2) !important;
-    border-radius: 3px !important;
-    font-size: 85% !important;
-    margin: .6em .2em !important;
-    padding: .2em .4em .1em !important;
-    flex: none !important;
+.ant-card-head-title {
+  background: hsla(0, 0%, 58.8%, 0.1) !important;
+  border: 1px solid hsla(0, 0%, 39.2%, 0.2) !important;
+  border-radius: 3px !important;
+  font-size: 85% !important;
+  margin: 0.6em 0.2em !important;
+  padding: 0.2em 0.4em 0.1em !important;
+  flex: none !important;
 }
+
+.ant-card-body {
+  padding: 16px !important;
+}
+
+.ant-typography {
+  color: black !important;
+}
+
+// .ant-card-meta-description {
+//   margin-right: 10% !important;
+//   margin-top: -30px !important;
+//   position: absolute !important;
+// }
