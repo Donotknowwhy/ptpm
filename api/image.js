@@ -6,7 +6,7 @@ export function getListImage(params) {
 
 export function getSignedURL(params) {
   return axios.get(
-    `http://localhost:3005/v1/images/gen-signed-url?key=${params}`
+    `http://soc.laptrinhwebthatzui.me:13000/v1/images/gen-signed-url?key=${params}`
   );
 }
 
