@@ -54,27 +54,26 @@ function profile() {
 
   const [image, setImage] = useState();
   const [isFetching, setIsFetching] = useState(false);
-  const [change, setChange] = useState("");
 
   useEffect(() => {
     getCurrentUser().then((values) => {
       getImageByUser(values.uid).then((res) => {
         console.log(values.uid);
         console.log(res.data.data.images);
-        setImage(res.data.data.images);
+        setImage(res.data.data.images.reverse());
         setIsFetching(true);
       });
     });
   }, []);
 
-  useEffect(() => {
-    getCurrentUser().then((values) => {
-      getImageByUser(values.uid).then((res) => {
-        console.log(res.data.data.images);
-        setImage(res.data.data.images.reverse());
-      });
-    });
-  }, [change]);
+  // useEffect(() => {
+  //   getCurrentUser().then((values) => {
+  //     getImageByUser(values.uid).then((res) => {
+  //       console.log(res.data.data.images);
+  //       setImage(res.data.data.images.reverse());
+  //     });
+  //   });
+  // }, [change]);
 
   const props = {
     name: "file",
@@ -149,12 +148,12 @@ function profile() {
             putImage(res.data.data, items.originFileObj)
               .then(() => {
                 successNotification();
-                setChange(res.data.data);
                 saveUser(values.uid, name)
                   .then(() => console.log("save user success"))
                   .catch((error) => {
                     console.log("error: " + error);
                   });
+                setTimeout(window.location.reload.bind(window.location), 1500);
               })
               .catch((error) => {
                 console.log("error: " + error);
