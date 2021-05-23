@@ -17,7 +17,7 @@ import {
   notification,
   Card,
   Image,
-  Skeleton
+  Skeleton,
 } from "antd";
 import {
   UploadOutlined,
@@ -54,7 +54,7 @@ function profile() {
 
   const [image, setImage] = useState();
   const [isFetching, setIsFetching] = useState(false);
-  const [change, setChange] = useState('')
+  const [change, setChange] = useState("");
 
   useEffect(() => {
     getCurrentUser().then((values) => {
@@ -67,14 +67,14 @@ function profile() {
     });
   }, []);
 
-  useEffect(() =>{
+  useEffect(() => {
     getCurrentUser().then((values) => {
-      getImageByUser(values.uid).then((res) =>{
-        console.log(res.data.data.images)
-        setImage(res.data.data.images.reverse())
-      })
-    })
-  },[change])
+      getImageByUser(values.uid).then((res) => {
+        console.log(res.data.data.images);
+        setImage(res.data.data.images.reverse());
+      });
+    });
+  }, [change]);
 
   const props = {
     name: "file",
@@ -104,8 +104,6 @@ function profile() {
   const [previewTitle, setPreviewTitle] = useState("[previewTitle");
 
   const [fileList, setFileList] = useState([]);
-
- 
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -151,13 +149,13 @@ function profile() {
             putImage(res.data.data, items.originFileObj)
               .then(() => {
                 successNotification();
-                setChange(res.data.data)
+                setChange(res.data.data);
+                saveUser(values.uid, name)
+                  .then(() => console.log("save user success"))
+                  .catch((error) => {
+                    console.log("error: " + error);
+                  });
               })
-              .catch((error) => {
-                console.log("error: " + error);
-              });
-            saveUser(values.uid, name)
-              .then(() => console.log("save user success"))
               .catch((error) => {
                 console.log("error: " + error);
               });
@@ -173,7 +171,7 @@ function profile() {
   return (
     <div>
       <PrivateLayout>
-        <Row justify="center" style = {{backgroundColor: '#fff'}}>
+        <Row justify="center" style={{ backgroundColor: "#fff" }}>
           <div className={styles.profile}>
             <div className={styles.profileContent}>
               <Avatar
@@ -262,21 +260,20 @@ function profile() {
               </div>
             </div>
             <div className={styles.listImage}>
-              <Row  gutter={[8, 8]}>
-                {image && image.map((items) => {
+              <Row gutter={[8, 8]}>
+                {image &&
+                  image.map((items) => {
                     return (
-                      
-                      <Col span={8} >
+                      <Col span={8}>
                         <Image
-                            className = {styles.ImgItem}
-                            width={294}
-                            src={items}
-                            style={{
+                          className={styles.ImgItem}
+                          width={294}
+                          src={items}
+                          style={{
                             marginBottom: "8px",
                           }}
                         />
                       </Col>
-                     
                     );
                   })}
                 {isFetching == false && (

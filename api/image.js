@@ -1,7 +1,8 @@
 import axios from "axios";
 
-// const domain = "https://nosy-zigzag-ball.glitch.me"
-const domain = "http://soc.laptrinhwebthatzui.me:13000"
+// const domain = "http://soc.laptrinhwebthatzui.me:13000"
+const domain = "https://be-soc-ptit.herokuapp.com"
+// const domain = "http://localhost:3005"
 
 export function getListImage(params) {
   // return axios.get(`https://picsum.photos/v2/list?page=${params}&limit=10`);
@@ -21,7 +22,7 @@ export function putImage(url, data) {
 }
 
 export function saveUser(uid, params) {
-  return axios.post(`${domain}domain/v1/users/${uid}`, {
+  return axios.post(`${domain}/v1/users/${uid}`, {
     imageUrl: params,
   });
 }
