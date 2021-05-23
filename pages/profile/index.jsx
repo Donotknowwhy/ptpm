@@ -5,7 +5,17 @@ import { useUser } from "../../utils/use-user";
 import { storage, user } from "../../api/firebase-client";
 import { v4 as uuidv4 } from "uuid";
 
-import { Upload, message, Button, Row, Avatar, Col, Grid, Modal } from "antd";
+import {
+  Upload,
+  message,
+  Button,
+  Row,
+  Avatar,
+  Col,
+  Grid,
+  Modal,
+  notification,
+} from "antd";
 import {
   UploadOutlined,
   SettingOutlined,
@@ -26,8 +36,8 @@ function getBase64(file) {
   });
 }
 
-const openNotification = () => {
-  notification.open({
+const successNotification = () => {
+  notification.success({
     message: "Tải ảnh lên thành công",
   });
 };
@@ -104,9 +114,15 @@ function profile() {
       getSignedURL(name)
         .then((res) => {
           console.log(res.data.data);
-          putImage(res.data.data, items.originFileObj);
+          putImage(res.data.data, items.originFileObj)
+            .then(() => {
+              successNotification();
+            })
+            .catch((error) => {
+              console.log("error: " + error);
+            });
         })
-        .catch((error) => console.log("error"));
+        .catch((error) => console.log("error: " + error));
     });
   };
 

@@ -7,7 +7,6 @@ function CardImage(){
     return (
         <Row justify="center">
             <Card
-                title="Image"
                 hoverable
                 style={{
                     width: "614px",
@@ -21,7 +20,6 @@ function CardImage(){
                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                 }
                 title="This is title"
-                description="www.instagram.com"
                 />
             </Card>
         </Row>

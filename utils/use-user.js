@@ -16,6 +16,14 @@ import {mapAccessToken, mapRefreshToken, mapUserData} from './map-user-data';
 
 initFirebase();
 
+function getCurrentUser() {
+  return new Promise((resolve, reject) => {
+    firebase.auth().onAuthStateChanged((user) => {
+      resolve(user);
+    });
+  });
+}
+
 const useUser = () => {
   const [user, setUser] = useState();
   const router = useRouter();
@@ -75,4 +83,4 @@ const useUser = () => {
   return {user, logout};
 };
 
-export {useUser};
+export {useUser, getCurrentUser};
