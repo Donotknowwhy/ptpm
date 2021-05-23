@@ -3,9 +3,10 @@ import PrivateLayout from '../../components/PrivateLayout'
 import styles from "./index.module.scss";
 import { useUser } from "../../utils/use-user";
 
-import { Upload, message, Button, Row, Avatar } from 'antd';
-
+import { Upload, message, Button, Row, Avatar,Col, Grid } from 'antd';
 import { UploadOutlined ,SettingOutlined ,InsertRowAboveOutlined ,BookOutlined,SolutionOutlined} from '@ant-design/icons';
+
+import CardImage from "../CardImage/index";
 
 
 function profile() {
@@ -30,38 +31,46 @@ function profile() {
     return (
         <div>
             <PrivateLayout>
-                <Row justify = "center">
+                <Row justify="center"  style = {{height:"100vh", backgroundColor:"#FFF"}}>
                 <div className={styles.profile}>
                    <div className={styles.profileContent}>
-                        <Avatar size={150} src={user ? user.photoURL : ''} className={styles.imgUser}/>
-                        <div className={styles.profileControl}>
-                            <div style = {{display: "flex",height: "40px",alignItems:" center",marginTop: "16px"}}>
-                                <div className={styles.userName}>
-                                    <span>{user ? user.displayName : ''}</span>
+                        <Row style = {{width:"100%"}} justify = "center">
+                          
+                          <Col md = {8} sm = {24} >
+                            <Avatar size={150} src={user ? user.photoURL : ''} className={styles.imgUser}/>
+                          </Col>
+                          
+                          <Col md = {14} sm = {24}  >
+                            <div className={styles.profileControl}>
+                                <div className = {styles.UserInfo} style = {{display: "flex",height: "40px",alignItems:" center",marginTop: "16px"}}>
+                                    <div className={styles.userName}>
+                                        <span>{user ? user.displayName : ''}</span>
+                                    </div>
+                                    <div className={styles.uploadImg}>
+                                            <Upload {...props}>
+                                                <Button className={styles.BtnUpload} icon={<UploadOutlined />} style = {{width:"180px", borderRadius: "5px"}} >Thêm ảnh của bạn</Button>
+                                            </Upload>
+                                    </div>
+                                    <SettingOutlined style= {{fontSize:"24px"}} />
                                 </div>
-                                <div className={styles.uploadImg}>
-                                        <Upload {...props}>
-                                            <Button icon={<UploadOutlined />} style = {{width:"180px", borderRadius: "5px"}} >Thêm ảnh của bạn</Button>
-                                        </Upload>
+                                <div className = {styles.folow}>
+                                    <p className= {styles.folowItem} >13 bài viết</p>
+                                    <p className= {styles.folowItem} >48 Nguời theo dõi</p>
+                                    <p className= {styles.folowItem} >Đang theo dõi 37 người dùng</p>
                                 </div>
-                                <SettingOutlined style= {{fontSize:"24px"}} />
+                                <div className= {styles.menuContol}>
+                                    <div style={{color:"#000", borderBottom:"1px solid #000"}} className= {styles.menuItem}> <InsertRowAboveOutlined /> Bài Viết</div>
+                                    <div className= {styles.menuItem}> <BookOutlined /> Đã Lưu</div>
+                                    <div className= {styles.menuItem}> <SolutionOutlined /> Được gắn thẻ</div>
+                                </div>
                             </div>
-                            <div className = {styles.folow}>
-                                <p className= {styles.folowItem} >13 bài viết</p>
-                                <p className= {styles.folowItem} >48 Nguời theo dõi</p>
-                                <p className= {styles.folowItem} >Đang theo dõi 37 người dùng</p>
-                            </div>
-                            <div className= {styles.menuContol}>
-                                <div style={{color:"#000", borderBottom:"1px solid #000"}} className= {styles.menuItem}> <InsertRowAboveOutlined /> Bài Viết</div>
-                                <div className= {styles.menuItem}> <BookOutlined /> Đã Lưu</div>
-                                <div className= {styles.menuItem}> <SolutionOutlined /> Được gắn thẻ</div>
-                            </div>
-                        </div>
+                          </Col>
+                        </Row>
                    </div>
                    <div className={styles.listImage}>
-
+                      <CardImage/>
                    </div>
-               </div>
+                </div>
                 </Row>
             </PrivateLayout>
         </div>

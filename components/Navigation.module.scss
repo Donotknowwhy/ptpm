@@ -80,3 +80,24 @@
 .ant-popover{
     position:fixed !important;
 }
+
+@media (max-width: 992px) {
+    .search{
+    //   display: none;
+    }
+    .nav{
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .search{
+        margin-right: 0 !important;
+    }
+  }
+
+@media (max-width: 576px) {
+    .search{
+     display: none;
+    }
+  }

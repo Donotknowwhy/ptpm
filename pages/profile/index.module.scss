@@ -54,3 +54,26 @@
         font-weight:300;
     }
 }
+
+.listImage{
+    margin-top: 36px;
+}
+
+@media (max-width: 768px) {
+    .folowItem{
+        font-size:16px !important;
+    }
+
+    .imgUser{
+        margin-right: 0 !important;
+    }
+
+    .profileControl{
+        text-align: center !important;
+    }
+
+    .userName{
+        font-size: 18px !important;
+    }
+
+}
