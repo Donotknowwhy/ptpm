@@ -60,6 +60,11 @@
     margin-top: 36px;
 }
 
+.ImgItem{
+    height: 294px !important;
+    object-fit: cover;
+}
+
 @media (max-width: 768px) {
     .folowItem{
         font-size:16px !important;
