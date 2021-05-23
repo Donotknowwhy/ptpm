@@ -1,10 +1,7 @@
-.profile{
-    height:100vh;
-    width: 936px;
-    margin-top: 106px;
-}
 
 .profileContent{
+    width: 936px;
+    margin-top: 106px;
     display: flex;
     padding-bottom: 42px;
     border-bottom: 1px solid #ccc;
@@ -32,7 +29,7 @@
 
 .folow{
     display: flex;
-
+    width: 100%;
     .folowItem{
         font-size: 18px;
         font-weight:100;
@@ -41,7 +38,7 @@
         margin-bottom: 0;
         padding:0;
         margin-left:0;
-        margin-top: 32px;
+        padding-top: 32px;
     }
 }
 
@@ -58,28 +55,135 @@
 
 .listImage{
     margin-top: 36px;
+    width: 936px;
 }
 
 .ImgItem{
-    height: 294px !important;
+    height: 294px;
+    margin-bottom: 8px;
     object-fit: cover;
+    margin-right: 0!important;
 }
 
+ 
+.boxImg{
+    width: 100% !important;
+    display: flex !important;
+    justify-content:center !important;
+}
+
+@media (max-width: 992px) {
+    .ImgItem{
+        height: 290px ;
+        width: 290px ;
+        margin-bottom: 0 ;
+    }
+ 
+}
+
+ 
+@media(min-width:810px) and (max-width: 890px) {
+ 
+    .ImgItem{
+        height: 270px ;
+        width: 270px ;
+    }
+ 
+}
+@media(min-width:768px) and (max-width: 810px) {
+ 
+    .ImgItem{
+        height: 250px ;
+        width: 250px ;
+    }
+
+    .folowItem{
+        font-size: 16px !important;
+    }
+ 
+}
+ 
+@media(min-width:577px) and (max-width: 768px) {
+ 
+    .profileControlUpload,
+    .folow,
+    .menuContol{
+        width: 100%;
+        justify-content: center !important;
+    }
+ 
+ 
+    .ImgItem{
+        height: 288px ;
+        width: 288px ;
+        margin-bottom: 12px;
+    }
+ 
+    .colImage{
+        // margin: 0 12px !important;
+    }
+ 
+    .menuItem:last-child{
+        margin-right: 0 !important;
+    }
+ 
+ 
+}
+ 
+@media(max-width:576px){
+    
+    .profileControlUpload,
+    .folow,
+    .menuContol{
+        width: 100%;
+        justify-content: center !important;
+        flex-wrap: wrap;
+    }
+ 
+    .userName{
+        font-size:18px;
+    }
+ 
+    .folow{
+        display: none;
+    }
+ 
+    .menuContol{
+        margin-top:38px !important;
+    }
+ 
+    .menuItem{
+        margin-right: 12px !important;
+    }
+ 
+    .menuContol:last-child{
+        margin-right: 0 !important;
+    }
+ 
+ 
+    .iconSeting{
+        display:none;
+    }
+}
+ 
+ 
 @media (max-width: 768px) {
     .folowItem{
         font-size:16px !important;
     }
-
+ 
     .imgUser{
         margin-right: 0 !important;
     }
-
+ 
     .profileControl{
         text-align: center !important;
     }
-
+ 
     .userName{
         font-size: 18px !important;
     }
-
+ 
+ 
 }
+ 

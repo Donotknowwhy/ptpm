@@ -166,11 +166,21 @@ p {
   margin-bottom: 6px;
 }
 
+.messages_App__23Q5A{
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0px !important;
+}
+
+
 @media only screen and (max-width: 991px) {
   .App {
     display: none;
   }
+  
 }
+
+
 
 .ant-card-head-title {
   background: hsla(0, 0%, 58.8%, 0.1) !important;
