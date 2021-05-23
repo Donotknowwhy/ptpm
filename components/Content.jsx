@@ -48,7 +48,7 @@ function Content() {
     <div>
       <div style={{ "margin-top": "100px" }}>
         <Row justify="center">
-          <Col  lg={16} xl={10} xxl={11}>
+          <Col  lg={11} xl={11} xxl={12}>
             {listImg &&
               listImg.map((items) => {
                 return (
@@ -74,7 +74,7 @@ function Content() {
                 );
               })}
           </Col>
-          <Col  lg={5} xl={6} xxl={6}>
+          <Col  lg={8} xl={8} xxl={12}>
             <div className="App">
               <header><span>Trash talk  💬</span> <ExclamationCircleOutlined style={{fontSize:"20px", marginRight: "4px", cursor: "pointer"}}/></header>
               <section>

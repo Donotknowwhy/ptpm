@@ -51,8 +51,8 @@ export default function Navigation() {
             <HomeOutlined className={styles.icon} />
           </div>
           <div className={styles.controlItem}>
-            <SendOutlined className={styles.icon}/> 
-            <span className={styles.countMessage}>2</span>
+            <a href = "/ChatBox" style = {{color:"#000"}} > <SendOutlined className={styles.icon}/> </a>
+            
           </div>
           <div className={styles.controlItem}>
             <HeartOutlined className={styles.icon}/> 
