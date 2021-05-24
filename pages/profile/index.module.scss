@@ -179,6 +179,9 @@
     .iconSeting{
         display:none;
     }
+}
+
+@media(min-width:450px) and (max-width: 576px) {
     .uploadAvt{
         position: absolute;
         bottom:22px;
@@ -186,12 +189,23 @@
     }
 }
 
-@media(min-width:320px) and (max-width: 450px) {
+@media(min-width:375px) and (max-width: 450px) {
+ 
+    .uploadAvt{
+        position: absolute;
+        bottom:22px !important;
+        right: 32% !important;;
+    }
+ 
+ 
+}
+
+@media(min-width:320px) and (max-width: 375px) {
  
     .uploadAvt{
         position: absolute;
         bottom:22px;
-        right: 32% !important;;
+        right: 28% !important;;
     }
  
  
