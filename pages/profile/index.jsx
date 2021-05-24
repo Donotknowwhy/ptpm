@@ -25,6 +25,7 @@ import {
   InsertRowAboveOutlined,
   BookOutlined,
   SolutionOutlined,
+  CameraOutlined
 } from "@ant-design/icons";
 import {
   getSignedURL,
@@ -32,6 +33,7 @@ import {
   saveUser,
   getImageByUser,
 } from "../../api/image";
+import ModalUploadImg from "../../components/ModalUploadimg";
 
 const { Meta } = Card;
 function getBase64(file) {
@@ -55,6 +57,12 @@ function profile() {
   const [image, setImage] = useState();
   const [isFetching, setIsFetching] = useState(false);
 
+  const [visibleUpload, setVisibleUpload] = useState(false);
+
+  const toggleUpdate = () => {
+    setVisibleUpload(false);
+  };
+
   useEffect(() => {
     getCurrentUser().then((values) => {
       getImageByUser(values.uid).then((res) => {
@@ -66,14 +74,6 @@ function profile() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   getCurrentUser().then((values) => {
-  //     getImageByUser(values.uid).then((res) => {
-  //       console.log(res.data.data.images);
-  //       setImage(res.data.data.images.reverse());
-  //     });
-  //   });
-  // }, [change]);
 
   const props = {
     name: "file",
@@ -180,6 +180,11 @@ function profile() {
                     src={user ? user.photoURL : ""}
                     className={styles.imgUser}
                   />
+                  <Button onClick={() => {
+                    setVisibleUpload(true);
+                  }} icon={<CameraOutlined />}
+                  />
+                  {visibleUpload == true && <ModalUploadImg toggleUpdate={toggleUpdate}/> }
                 </div>
               </Col>
               <Col xs = {24} sm={24} md={16}>
