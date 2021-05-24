@@ -72,6 +72,16 @@
     justify-content:center !important;
 }
 
+.imgUser{
+    position: relative;
+}
+
+.uploadAvt{
+    position: absolute;
+    bottom:36px;
+    right:38%;
+}
+
 @media (max-width: 992px) {
     .ImgItem{
         height: 290px ;
@@ -126,6 +136,11 @@
     .menuItem:last-child{
         margin-right: 0 !important;
     }
+    .uploadAvt{
+        position: absolute;
+        bottom:22px;
+        right:40% !important;
+    }
  
  
 }
@@ -165,9 +180,40 @@
         display:none;
     }
 }
+
+@media(min-width:450px) and (max-width: 576px) {
+    .uploadAvt{
+        position: absolute;
+        bottom:22px;
+        right:36% !important;
+    }
+}
+
+@media(min-width:375px) and (max-width: 450px) {
+ 
+    .uploadAvt{
+        position: absolute;
+        bottom:22px !important;
+        right: 32% !important;;
+    }
  
  
-@media (max-width: 768px) {
+}
+
+@media(min-width:320px) and (max-width: 375px) {
+ 
+    .uploadAvt{
+        position: absolute;
+        bottom:22px;
+        right: 28% !important;;
+    }
+ 
+ 
+}
+ 
+ 
+ 
+@media (max-width: 767px) {
     .folowItem{
         font-size:16px !important;
     }
@@ -183,6 +229,12 @@
     .userName{
         font-size: 18px !important;
     }
+
+    // .uploadAvt{
+    //     position: absolute;
+    //     bottom:22px;
+    //     right:40% !important;
+    // }
  
  
 }

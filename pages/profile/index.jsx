@@ -174,13 +174,16 @@ function profile() {
             <div className={styles.profileContent}>
             <Row justify="center" style = {{backgroundColor: '#fff' , width: '100%'}}>
               <Col xs = {24} sm = {24} md = {8}>
-                <div style = {{display: 'flex', justifyContent: 'center'}}>
+                <div className = {styles.avatar} style = {{display: 'flex', justifyContent: 'center'}}>
                     <Avatar
+                    style={{paddingRight: "0"}}
                     size={150}
                     src={user ? user.photoURL : ""}
                     className={styles.imgUser}
                   />
-                  <Button onClick={() => {
+                  <Button 
+                  className = {styles.uploadAvt}
+                    onClick={() => {
                     setVisibleUpload(true);
                   }} icon={<CameraOutlined />}
                   />
