@@ -274,7 +274,7 @@ function profile() {
                 {image && image.map((items) => {
                     return (
                       
-                      <Col span={8} xs = {24} sm = {12} lg={8} md={8} className={styles.colImage}>
+                      <Col span={8} xs = {24} sm = {12} lg={8}  className={styles.colImage}>
                         <div className={styles.boxImg}>
                           <Image
                               className = {styles.ImgItem}
